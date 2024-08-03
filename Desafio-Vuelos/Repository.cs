@@ -24,7 +24,8 @@
 			}
 		};
 
-		public List<Flight> GetFlights() => flights; 
+		public List<Flight> GetFlights() => flights;
+		public Flight? GetFlight(string FlightNumber) => flights.Find(f => f.FlightNumber == FlightNumber);
 	}
 
 	public class Flight
