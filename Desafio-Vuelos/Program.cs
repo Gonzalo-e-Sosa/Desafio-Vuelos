@@ -7,4 +7,12 @@ var app = builder.Build();
 
 app.MapGet("/flights", () => new Repository().GetFlights());
 
+app.MapGet("/flights/{flightNumber}", (string flightNumber) => {
+	var flight = new Repository().GetFlight(flightNumber.ToUpper());
+
+	return flight == null
+		? Results.NotFound()
+		: Results.Ok(flight);
+});
+
 app.Run();
