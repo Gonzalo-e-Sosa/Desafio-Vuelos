@@ -16,7 +16,6 @@ namespace Desafio_Vuelos.Controllers
             return View(flights);
         }
 
-        [HttpGet]
         public IActionResult Create()
         {
             return View();
