@@ -1,0 +1,40 @@
+﻿@model Desafio_Vuelos.Models.Flight
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Alta";
+}
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+    <div class="form-group">
+        <label asp-for="ArrivalTime" class="control-label">Horario Llegada</label>
+        <input asp-for="ArrivalTime" class="form-control"
+            type="time" 
+        />
+        <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="FlightNumber" class="control-label">Vuelo</label>
+        <input asp-for="FlightNumber" class="form-control" 
+            type="text"
+            min="6" maxlength="8"
+            placeholder="AU2339"
+        />
+        <span asp-validation-for="FlightNumber" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Airline" class="control-label">Línea Aerea</label>
+        <input asp-for="Airline" class="form-control" 
+            type="text"    
+            min="3" maxlength="300"
+            placeholder="Aerolíenas Argentinas" />
+        <span asp-validation-for="Airline" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Delayed" class="control-label">Demorado</label>
+        <input asp-for="Delayed" class="form-control"
+               type="checkbox" />
+        <span asp-validation-for="Delayed" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

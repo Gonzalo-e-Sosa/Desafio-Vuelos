@@ -1,0 +1,21 @@
+﻿@using Desafio_Vuelos.Repositories
+@using Desafio_Vuelos.Services
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Baja";
+
+    var flightRepository = new FlightRepository();
+    var flightService = new FlightService(flightRepository);
+    var flights = await flightService.GetAllFlightsAsync();
+}
+
+<form asp-action="Delete" method="post">
+    <select>
+        @foreach (var flight in flights)
+        {
+            <option>@flight.FlightNumber</option>    
+        }
+    </select>
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>

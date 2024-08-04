@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Desafio_Vuelos.Models.Flight>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Próximos vuelos";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>Horario llegada</th>
+            <th>Vuelo</th>
+            <th>Línea Aerea</th>
+            <th>Demorado</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var flight in Model)
+    {
+        <tr>
+            <td>@flight.ArrivalTime.TimeOfDay</td>
+            <td>@flight.FlightNumber</td>
+            <td>@flight.Airline</td>
+            <td>@flight.Delayed</td>
+        </tr>
+    }
+    </tbody>
+</table>
