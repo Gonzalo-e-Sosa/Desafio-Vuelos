@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Desafio_Vuelos.Models.Flight>
+
+@{
+    ViewData["Title"] = "Eliminar vuelo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Baja</h1>
+
+<div>
+    <hr />
+    <form asp-action="Delete" method="post">
+        <label for="flightNumber">Seleccionar vuelo a eliminar</label>
+        <select id="flightNumber" name="flightNumber" class="form-control">
+            @foreach (var flight in Model)
+            {
+                <option value="@flight.FlightNumber">@flight.FlightNumber</option>
+            }
+        </select>
+        
+        <input type="submit" value="Eliminar" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a próximos vuelos</a>
+    </form>
+</div>

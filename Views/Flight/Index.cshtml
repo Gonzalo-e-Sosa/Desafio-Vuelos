@@ -1,0 +1,54 @@
+﻿@model IEnumerable<Desafio_Vuelos.Models.Flight>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Listado de vuelos";
+}
+
+<h1>Próximos Vuelos</h1>
+
+<p>
+    <a asp-action="Create">Crear nuevo vuelo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Horario llegada
+            </th>
+            <th>
+                Vuelo
+            </th>
+            <th>
+                Línea Aerea
+            </th>
+            <th>
+                Demorado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @item.ArrivalTime.ToString("HH:mm")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlightNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Airline)
+            </td>
+            <td>
+                @(item.Delayed ? "Sí" : "No")
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { flightNumber = item.FlightNumber }) |
+                @Html.ActionLink("Details", "Details", new { flightNumber = item.FlightNumber }) |
+                @Html.ActionLink("Delete", "Delete", new { flightNumber = item.FlightNumber } )
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
