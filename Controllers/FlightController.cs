@@ -12,8 +12,9 @@ namespace Desafio_Vuelos.Controllers
         public async Task<ActionResult> Index()
         {
             var flights = await _flightService.GetAllFlightsAsync();
-            var sortedFligts = flights.OrderBy(f => f.ArrivalTime).ToList();
-            return View(flights);
+            var sortedFlights = flights.OrderBy(f => f.ArrivalTime).ToList();
+            
+            return View(sortedFlights);
         }
 
         // GET: FlightController/Details/AU2401
@@ -67,7 +68,7 @@ namespace Desafio_Vuelos.Controllers
 
                 if (
                     formCollection.ContainsKey("Delayed") 
-                    && bool.TryParse(formCollection["Delayed"], out var parsedDelayed)
+                    && bool.TryParse(formCollection["Delayed"][0], out var parsedDelayed)
                 )
                 {
                     delayed = parsedDelayed;
@@ -85,9 +86,8 @@ namespace Desafio_Vuelos.Controllers
 
                 return RedirectToAction(nameof(Index));
             }
-            catch (Exception ex)
+            catch
             {
-                // _logger.LogError(ex, "An error occurred while creating a flight.");
                 ModelState.AddModelError(string.Empty, "An error occurred while creating the flight. Please try again.");
                 return View();
             }
@@ -129,7 +129,7 @@ namespace Desafio_Vuelos.Controllers
 
                 if (
                     formCollection.ContainsKey("Delayed")
-                    && bool.TryParse(formCollection["Delayed"], out var parsedDelayed)
+                    && bool.TryParse(formCollection["Delayed"][0], out var parsedDelayed)
                 )
                 {
                     delayed = parsedDelayed;

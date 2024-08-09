@@ -45,7 +45,6 @@ namespace Desafio_Vuelos.Repositories
 
         public async Task<Task> UpdateFlightAsync(Flight flight)
         {
-            //var flightToUpdate = _flights.FirstOrDefault(f => f.FlightNumber.Equals(flight.FlightNumber, StringComparison.CurrentCultureIgnoreCase));
             var flightToUpdate = await _context.Flights.FindAsync(flight.FlightNumber);
 
             if (flightToUpdate == null)
@@ -65,17 +64,12 @@ namespace Desafio_Vuelos.Repositories
 
         public async Task<Task> DeleteFlightAsync(string flightNumber)
         {
-            //var flight = _flights.FirstOrDefault(f => f.FlightNumber.Equals(flightNumber, StringComparison.CurrentCultureIgnoreCase));
             var flightToRemove = await _context.Flights.FindAsync(flightNumber);
 
-            Console.WriteLine(flightToRemove);
-            
             if (flightToRemove == null)
             {
                 return Task.FromException(new InvalidOperationException($"Flight with number {flightNumber} does not exist."));
             }
-
-            Console.WriteLine(flightToRemove.FlightNumber);
 
             _context.Flights.Remove(flightToRemove);
             await _context.SaveChangesAsync();
