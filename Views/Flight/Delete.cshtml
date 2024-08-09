@@ -14,7 +14,9 @@
         <select id="flightNumber" name="flightNumber" class="form-control">
             @foreach (var flight in Model)
             {
-                <option value="@flight.FlightNumber">@flight.FlightNumber</option>
+                <option value="@flight.FlightNumber">
+                    @flight.FlightNumber
+                </option>
             }
         </select>
         
@@ -22,3 +24,26 @@
         <a asp-action="Index">Volver a próximos vuelos</a>
     </form>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let url = new URL(window.location.href);
+        let queryParams = url.searchParams;
+        if (queryParams.has("flightNumber")) { 
+            let selectedFlightNumber = queryParams.get("flightNumber");
+        
+            let $options = document.getElementById('flightNumber').getElementsByTagName('option');
+            
+            console.log({ selectedFlightNumber, $options })
+
+            if (selectedFlightNumber) {
+                Array.from($options).forEach($option => { 
+                    if ($option.value == selectedFlightNumber) { 
+                        $option.setAttribute("selected", "");
+                        return;
+                    }
+                })
+            }
+        }
+    });
+</script>

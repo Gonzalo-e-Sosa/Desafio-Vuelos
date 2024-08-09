@@ -44,9 +44,9 @@
                 @(item.Delayed ? "Sí" : "No")
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { flightNumber = item.FlightNumber }) |
-                @Html.ActionLink("Details", "Details", new { flightNumber = item.FlightNumber }) |
-                @Html.ActionLink("Delete", "Delete", new { flightNumber = item.FlightNumber } )
+                @Html.ActionLink("Modificar", "Edit", new { flightNumber = item.FlightNumber }) |
+                @Html.ActionLink("Detalles", "Details", new { flightNumber = item.FlightNumber }) |
+                @Html.ActionLink("Eliminar", "Delete", new { flightNumber = item.FlightNumber } )
             </td>
         </tr>
 }
