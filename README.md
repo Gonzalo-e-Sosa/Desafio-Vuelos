@@ -25,8 +25,8 @@ Este proyecto es una aplicación web para la gestión de vuelos, donde se pueden
 1. Clona el repositorio:
 
     ```bash
-    git clone https://github.com/usuario/proyecto-vuelos.git
-    cd proyecto-vuelos
+    git clone https://github.com/Gonzalo-e-Sosa/Desafio-Vuelos.git
+    cd Desafio-Vuelos
     ```
 
 2. Configura la cadena de conexión en `appsettings.json`:
